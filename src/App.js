@@ -6,8 +6,23 @@ import './App.css';
 class App extends Component {
 
   state = {
-    items: []
+    items: [],
+    maxTask:0,
   };
+
+  doneTask = (id) => {
+    const itemsTodo = this.state.items.map(item => {
+
+      if (id === item.id) item.completed = true;
+      return item
+
+    })
+
+    this.setState({
+      items: itemsTodo
+    })
+
+  }
 
 
   componentDidMount() {
@@ -18,7 +33,10 @@ class App extends Component {
         console.log(JSON.parse(xhr.responseText))
 
         this.state.items = JSON.parse(xhr.responseText);
+        this.state.maxTask = this.state.items.length;
         this.setState(this.state)
+
+
       }
     }
 
@@ -34,7 +52,10 @@ class App extends Component {
         <h1 className="text-center py-4">This is you list TODO</h1>
         <ListToDo
           listItems={this.state.items}
-          ></ListToDo>
+          doneTask={this.doneTask}
+
+        ></ListToDo>
+        <p>{this.state.maxTask}</p>
       </div>
     );
   }
