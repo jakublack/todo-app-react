@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListToDo from './ToDoItem';
+import AddTask from './AddTask';
 
 import './App.css';
 
@@ -7,7 +8,9 @@ class App extends Component {
 
   state = {
     items: [],
-    maxTask:0,
+    maxTask: 10,
+    counter: 0,
+    addTask: false
   };
 
   doneTask = (id) => {
@@ -24,7 +27,6 @@ class App extends Component {
   }
 
   deleteTask = (id) => {
-    console.log(id)
 
     const itemsTodo = this.state.items.filter(item => {
 
@@ -34,11 +36,50 @@ class App extends Component {
 
     this.setState({
       items: itemsTodo,
-      maxTask: itemsTodo.length
     })
+
+    setTimeout(() => {
+      this.checkMaxTask();
+
+    },10)
   }
 
+  addTask = (todo) => {
 
+    todo.id = this.state.counter;
+    todo.completed = false;
+
+    let items = [...this.state.items, todo];
+
+    this.setState({
+      counter: this.state.counter + 1,
+      items,
+    })
+
+    setTimeout(() => {
+      this.checkMaxTask();
+
+    },10)
+
+  }
+
+  checkMaxTask = () => {
+
+    if (this.state.items.length >= this.state.maxTask) {
+
+      this.setState({
+        addTask: true
+      })
+
+      return false;
+
+    } else {
+      this.setState({
+        addTask: false
+      })
+    }
+
+  }
   componentDidMount() {
     let xhr = new XMLHttpRequest();
 
@@ -47,7 +88,8 @@ class App extends Component {
         console.log(JSON.parse(xhr.responseText))
 
         this.state.items = JSON.parse(xhr.responseText);
-        this.state.maxTask = this.state.items.length;
+        this.state.counter = this.state.items.length + 1;
+
         this.setState(this.state)
       }
     }
@@ -62,13 +104,17 @@ class App extends Component {
     return (
       <div className="container wrapper-app ">
         <h1 className="text-center py-4">This is you list TODO</h1>
+        <p className={"text-center error " + (this.state.addTask ? 'd-block' : 'd-none')}>Limit od task is 10, please do some task :)</p>
         <ListToDo
           listItems={this.state.items}
           doneTask={this.doneTask}
           deleteTask={this.deleteTask}
-
-        ></ListToDo>
-        <p>{this.state.maxTask}</p>
+        />
+        <p>{this.state.addTask}</p>
+        <AddTask
+          addTask={this.addTask}
+          disabled={this.state.addTask}
+        />
       </div>
     );
   }
