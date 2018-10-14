@@ -21,7 +21,21 @@ class App extends Component {
     this.setState({
       items: itemsTodo
     })
+  }
 
+  deleteTask = (id) => {
+    console.log(id)
+
+    const itemsTodo = this.state.items.filter(item => {
+
+      return item.id !== id;
+
+    })
+
+    this.setState({
+      items: itemsTodo,
+      maxTask: itemsTodo.length
+    })
   }
 
 
@@ -35,8 +49,6 @@ class App extends Component {
         this.state.items = JSON.parse(xhr.responseText);
         this.state.maxTask = this.state.items.length;
         this.setState(this.state)
-
-
       }
     }
 
@@ -53,6 +65,7 @@ class App extends Component {
         <ListToDo
           listItems={this.state.items}
           doneTask={this.doneTask}
+          deleteTask={this.deleteTask}
 
         ></ListToDo>
         <p>{this.state.maxTask}</p>

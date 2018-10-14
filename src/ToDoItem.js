@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-const ListToDo = ({ listItems , doneTask }) => {
+const ListToDo = ({ listItems , doneTask, deleteTask }) => {
 
     const todoList = listItems.map(item => {
         return (
@@ -9,7 +9,7 @@ const ListToDo = ({ listItems , doneTask }) => {
                 <span className={(item.completed ? 'task-done' : '')}>{item.title}</span>
                 <div>
                     <button onClick={() => { doneTask(item.id)}} type="button" className={"btn btn-success " + (item.completed ? 'd-none' : 'd-inline')}>Done</button>
-                    <button type="button" className={"btn btn-danger " + (item.completed ? 'd-inline' : 'd-none')}>Delete</button>
+                    <button onClick={() => { deleteTask(item.id)}} type="button" className={"btn btn-danger " + (item.completed ? 'd-inline' : 'd-none')}>Delete</button>
                 </div>
             </div>
         )
