@@ -1,0 +1,10 @@
+body {
+  font-family: Helvetica, Arial, Sans-Serif;
+  background-color: #f2f2f2;
+
+}
+
+.wrapper-app {
+  height: 100vh;
+  width: 100vw;
+}
