@@ -104,7 +104,7 @@ class App extends Component {
     return (
       <div className="container wrapper-app ">
         <h1 className="text-center py-4">This is you list TODO</h1>
-        <p className={"text-center error " + (this.state.addTask ? 'd-block' : 'd-none')}>Limit od task is 10, please do some task :)</p>
+        <p className={"text-center error " + (this.state.addTask ? 'd-block' : 'd-none')}>Limit of task is 10, please do some task :)</p>
         <ListToDo
           listItems={this.state.items}
           doneTask={this.doneTask}
