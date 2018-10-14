@@ -9,7 +9,7 @@
 
 Run on Netlify:
 
-https://upbeat-wright-69d548.netlify.com
+https://quirky-easley-63fe26.netlify.com
 
 
 ### Installing
