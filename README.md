@@ -1,13 +1,6 @@
 # Simple TODO-app
 
-## Use
-
-* HTML5
-* CSS3
-* React
-* WebPack
-
-Run on Netlify:
+###Run on Netlify:
 
 https://quirky-easley-63fe26.netlify.com
 
