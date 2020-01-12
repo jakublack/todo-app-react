@@ -1,10 +1,5 @@
 # Simple TODO-app
 
-### Run on Netlify:
-
-https://quirky-easley-63fe26.netlify.com
-
-
 ### Installing
 
 clone repository
